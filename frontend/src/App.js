@@ -1,10 +1,28 @@
 // import logo from './logo.svg';
+// import React from 'react';
 import './App.css';
 
-function App() {
+const Hello = (props) => {
   return (
-    <div className="flex justify-center items-center m-4 bg-green-400 h-80 w-80 rounded-lg text-9xl">1</div>
-  );
+    <div>
+      <p>
+        Hello {props.name}, you are {props.age} years old
+      </p>
+    </div>
+  )
+}
+
+const App = () => {
+  const name = 'Peter'
+  const age = 10
+
+  return (
+    <div>
+      <h1>Greetings</h1>
+      <Hello name="Maya" age={26 + 10} />
+      <Hello name={name} age={age} />
+    </div>
+  )
 }
 
 export default App;
