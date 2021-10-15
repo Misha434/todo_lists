@@ -2,6 +2,29 @@
 import React, { useState } from 'react';
 import './App.css';
 
+const History = (props) => {
+  if (props.allClicks.length === 0) {
+    return (
+      <>
+        the app is used bt pressing the buttons
+      </>
+    )
+  }
+  return (
+    <>
+      button press history: {props.allClicks.join(' ')}
+    </>
+  )
+}
+
+const Button = ({ handleClick, text}) => (
+
+  <button onClick={handleClick}>
+    {text}
+  </button>
+)
+
+
 const App = () => {
   const [left, setLeft] = useState(0)
   const [right, setRight] = useState(0)
@@ -9,23 +32,21 @@ const App = () => {
 
   const handleLeftClick = () => {
     setAll(allClicks.concat("L"))
-    // NG due too tough to debug
-    // setAll(allClicks.push("L"))
     setLeft(left + 1)
   }
 
   const handleRightClick = () => {
     setAll(allClicks.concat("R"))
-    setLeft(right + 1)
+    setRight(right + 1)
   }
 
   return (
     <>
       {left}
-      <button onClick={handleLeftClick}>left</button>
-      <button onClick={handleRightClick}>right</button>
+      <Button handleClick={handleLeftClick} text="left" />
+      <Button handleClick={handleRightClick} text="right" />
       {right}
-      <p>{allClicks.join(' ')}</p>
+      <History allClicks={allClicks} />
     </>
   )
 }
