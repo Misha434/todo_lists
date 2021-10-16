@@ -1,12 +1,7 @@
 // import logo from './logo.svg';
 import React from 'react';
+import Note from './components/Note';
 import './App.css';
-
-const Note = ({ note }) => {
-  return (
-    <li>{note.content}</li>
-  )
-}
 
 const App = (notes) => {
   return (
