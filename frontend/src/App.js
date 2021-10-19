@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Note from './components/Note'
+import Notification from './components/Notification'
 
 import './App.css'
 
@@ -9,6 +10,8 @@ const App = () => {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
+  const [errorMessage, setErrorMessage] = useState('some error happened...')
+
 
   useEffect(() => {
     console.log('effect')
@@ -19,19 +22,21 @@ const App = () => {
         setNotes(response.data)
       })
   }, [])
-  console.log('render', notes.length, 'notes')
 
   const addNote = (event) => {
     event.preventDefault()
-  const noteObject = {
-    content: newNote,
-    date: new Date().toISOString(),
-    important: Math.random() < 0.5,
-    id: notes.length + 1,
-  }
+    const noteObject = {
+      content: newNote,
+      date: new Date().toISOString(),
+      important: Math.random() > 0.5,
+    }
 
-  setNotes(notes.concat(noteObject))
-  setNewNote('')
+    noteService
+      .create(noteObject)
+        .then(returnedNote => {
+        setNotes(notes.concat(returnedNote))
+        setNewNote('')
+      })
   }
 
   const handleNoteChange = (event) => {
@@ -46,6 +51,7 @@ const App = () => {
   return (
     <div>
       <h1>Notes</h1>
+      <Notification message={errorMessage} />
       <>
         <button onClick={() => setShowAll(!showAll)}>
           show {showAll ? "important" : "all"}
