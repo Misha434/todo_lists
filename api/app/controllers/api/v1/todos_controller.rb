@@ -1,20 +1,20 @@
 class Api::V1::TodosController < ApplicationController
   before_action :set_todo, only: [:show, :update, :destroy]
 
-  # GET api/vi/todos/
+  # GET api/v1/todos/
   def index
     @todos = Todo.all
     render json: { status: 'success', data: @todos }
   end
 
-  # GET api/vi/todos/:id
+  # GET api/v1/todos/:id
   def show
     render json: { status: 'success', data: @todo }
   end
 
-  # Post api/vi/todos
+  # Post api/v1/todos
   def create
-    @todo = todo.new(todo_params)
+    @todo = Todo.new(todo_params)
     if @todo.save
       render json: { status: 'success', data: @todo }
     else
@@ -22,7 +22,7 @@ class Api::V1::TodosController < ApplicationController
     end
   end
 
-  # Put api/vi/todos/:id
+  # Put api/v1/todos/:id
   def update
     if @todo.update(todo_params)
       render json: { status: 'success', data: @todo }
@@ -31,7 +31,7 @@ class Api::V1::TodosController < ApplicationController
     end
   end
 
-  # Delete api/vi/todos/:id
+  # Delete api/v1/todos/:id
   def destroy
     @todo.destroy
     render json: { status: 'success', data: @todo }
@@ -43,6 +43,6 @@ class Api::V1::TodosController < ApplicationController
   end
 
   def set_todo
-    @todo = todo.find(params[:id])
+    @todo = Todo.find(params[:id])
   end
 end
