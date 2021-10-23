@@ -4,7 +4,7 @@ class Api::V1::TodosController < ApplicationController
   # GET api/v1/todos/
   def index
     @todos = Todo.all
-    render json: { status: 'success', data: @todos }
+    render json: @todos
   end
 
   # GET api/v1/todos/:id
@@ -33,13 +33,24 @@ class Api::V1::TodosController < ApplicationController
 
   # Delete api/v1/todos/:id
   def destroy
-    @todo.destroy
-    render json: { status: 'success', data: @todo }
+    if @todo.destroy
+      render json: { status: 'success', data: @todo }
+    else
+      render json: todo.errors, status: 422
+    end
+  end
+  
+  def destroy_all
+    if Todo.destroy_all
+      render json: { status: 'success', data: @todo }
+    else
+      render json: { error: "Failed to destroy" }, status: 422
+    end
   end
 
   private
   def todo_params
-    params.require(:todo).permit(:dask)
+    params.require(:todo).permit(:dask, :done)
   end
 
   def set_todo
