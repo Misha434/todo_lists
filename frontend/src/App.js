@@ -69,8 +69,8 @@ const App = () => {
       <Wrapper>
         <Switch>
           <Route exact path="/todos" component={TodoList}/>
-          <Route path="/todos/new" component={AddTodo}/>
-          <Route path="/todos/edit" component={EditTodo}/>
+          <Route exact path="/todos/new" component={AddTodo}/>
+          <Route path="/todos/:id/edit" component={EditTodo}/>
         </Switch>
       </Wrapper>
     </>
