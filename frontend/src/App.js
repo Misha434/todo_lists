@@ -1,24 +1,78 @@
-// import logo from './logo.svg';
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React from 'react'
+import { Switch, Route, Link } from 'react-router-dom'
+import styled from 'styled-components'
+import AddTodo from './components/AddTodo'
+import TodoList from './components/TodoList'
+import EditTodo from './components/EditTodo'
+// import axios from 'axios'
 
 import './App.css'
 
-const App = () => {
-  const [todos, setTodos] = useState([])
+const Navbar = styled.nav`
+  background: #dbfffe;
+  min-height: 8vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`
 
-  useEffect(() => {
-    console.log('effect')
-    axios
-      .get('http://localhost:3001/api/v1/todos')
-      .then(response => {
-        console.log('promise fulfilled')
-        setTodos(response.data)
-      })
-  }, [])
-  
+const Logo = styled.div`
+  font-weight: bold;
+  font: 23px;
+  letter-spacing: 3px;
+`
+
+const NavItems = styled.ul`
+  display: flex;
+  width: 400px;
+  max-width: 40%;
+  justify-content: space-around;
+  list-style: none;
+`
+
+const NavItem = styled.li`
+  font-size: 19px;
+  font-weight: bold;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+`
+
+const Wrapper = styled.div`
+  width: 700px;
+  max-width: 85%;
+  margin: 20px auto;
+`
+
+const App = () => {
+   
   return (
     <>
+      <Navbar>
+        <Logo>
+          ToDo
+        </Logo>
+        <NavItems>
+          <NavItem>
+            <Link to="/todos">
+              Todos
+            </Link>
+          </NavItem>
+          <NavItem>
+            <Link to="/todos/new">
+              Add New Todo
+            </Link>
+          </NavItem>
+        </NavItems>
+      </Navbar>
+      <Wrapper>
+        <Switch>
+          <Route exact path="/todos" component={TodoList}/>
+          <Route exact path="/todos/new" component={AddTodo}/>
+          <Route path="/todos/:id/edit" component={EditTodo}/>
+        </Switch>
+      </Wrapper>
     </>
   )
 }
