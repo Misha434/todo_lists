@@ -121,13 +121,14 @@ function TodoList() {
           onChange={event => {
             setSearchName(event.target.value)
           }}
+          data-e2e="search-form"
         />
         <RemoveAllButton onClick={removeAllTodos}>
           Remove All
         </RemoveAllButton>
       </SearchAndButtton>
 
-      <div>
+      <div data-e2e="todos">
         {todos.filter((val) => {
           if(searchName === "") {
             return val
@@ -138,18 +139,18 @@ function TodoList() {
           return (
             <Row key={key}>
               {val.is_completed ? (
-                <CheckedBox>
+                <CheckedBox data-e2e={`checkbox-${key}`}>
                   <ImCheckboxChecked onClick={() => updateIsCompleted(key, val) } />
                 </CheckedBox>
               ) : (
-                <UncheckedBox>
+                <UncheckedBox data-e2e={`checkbox-${key}`}>
                   <ImCheckboxUnchecked onClick={() => updateIsCompleted(key, val) } />
                 </UncheckedBox>
               )}
-              <TodoName is_completed={val.is_completed}>
+              <TodoName is_completed={val.is_completed} data-e2e={`task-${key}`}>
                 {val.name}
               </TodoName>
-              <Link to={`/todos/${val.id}/edit`}>
+              <Link to={`/todos/${val.id}/edit`} data-e2e={`todo-link-${key}`}>
                 <EditButton>
                   <AiFillEdit />
                 </EditButton>
