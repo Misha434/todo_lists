@@ -56,3 +56,6 @@
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*
+
+/frontend/cypress/screenshots
+/frontend/cypress/videos

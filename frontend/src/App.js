@@ -20,6 +20,7 @@ const Logo = styled.div`
   font-weight: bold;
   font: 23px;
   letter-spacing: 3px;
+  font-weight: bold;
 `
 
 const NavItems = styled.ul`
@@ -32,8 +33,7 @@ const NavItems = styled.ul`
 
 const NavItem = styled.li`
   font-size: 19px;
-  font-weight: bold;
-  opacity: 0.7;
+  opacity: 0.5;
   &:hover {
     opacity: 1;
   }

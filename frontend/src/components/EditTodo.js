@@ -141,7 +141,7 @@ function EditTodo(props) {
           />
           <div>
             <span>CurrentStatus</span><br/>
-            <CurrentStatus>
+            <CurrentStatus data-e2e="status">
               {currentTodo.is_completed ? "Completed" : "UnCompleted"}
             </CurrentStatus>
           </div>
