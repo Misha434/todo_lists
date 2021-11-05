@@ -1,5 +1,5 @@
 FROM ruby:2.6.3
-RUN apt-get update -qq && apt-get install -y build-essential
+
 WORKDIR /todo_list 
 COPY Gemfile* /todo_list/
 RUN bundle install
