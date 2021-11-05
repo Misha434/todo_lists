@@ -22,15 +22,12 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "server": "json-server -p 3001 --watch db.json",
-    "cypress:open": "cypress open",
-    "cy:run": "NODE_PATH=src cypress run --headless"
+    "server": "json-server -p 3001 --watch db.json"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "plugin:cypress/recommended"
+      "react-app/jest"
     ]
   },
   "browserslist": {
