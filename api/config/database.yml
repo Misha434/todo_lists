@@ -52,6 +52,4 @@ test:
 #
 production:
   <<: *default
-  database: todo_production
-  username: api
-  password: <%= ENV['TODO_DATABASE_PASSWORD'] %>
+  url: <%= ENV['APP_DB_URL'] %>
