@@ -22,7 +22,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "server": "json-server -p 3001 --watch db.json"
+    "server": "json-server -p 3001 --watch db.json",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "eslintConfig": {
     "extends": [
